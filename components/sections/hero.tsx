@@ -28,10 +28,14 @@ export function HeroSection() {
   const heroProducts = [popularProducts[0], popularProducts[3], popularProducts[6]].filter(Boolean);
 
   return (
-    <section ref={heroRef} className="relative overflow-hidden px-3 pb-5 pt-1 sm:px-5 sm:pb-6 sm:pt-2">
+    <section
+      ref={heroRef}
+      className="relative -mt-[5.75rem] overflow-hidden px-3 pb-5 pt-[5.75rem] sm:-mt-[6.75rem] sm:px-5 sm:pb-6 sm:pt-[6.75rem] lg:-mt-[7rem] lg:pt-[7rem]"
+    >
       <div className="mx-auto max-w-[1720px] overflow-hidden rounded-[44px] border border-[rgba(255,255,255,0.16)] bg-[linear-gradient(180deg,rgba(11,31,24,0.16),rgba(255,255,255,0.04))] shadow-[0_36px_120px_rgba(11,30,23,0.18)]">
         <div className="relative grid min-h-[31rem] lg:min-h-[calc(100svh-9.1rem)] lg:grid-cols-[0.92fr,1.08fr]">
           <div className="absolute inset-0">
+            <div className="absolute inset-x-0 top-0 z-[1] h-32 bg-[linear-gradient(180deg,rgba(12,34,26,0.38),rgba(12,34,26,0.12)_45%,transparent)]" />
             <motion.div
               style={shouldReduceMotion ? undefined : { y: mistY }}
               className="absolute inset-0 opacity-32"

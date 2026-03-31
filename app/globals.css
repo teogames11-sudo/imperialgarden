@@ -167,6 +167,29 @@ img {
   pointer-events: none;
 }
 
+.home-ribbon {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  transform: none;
+}
+
+.home-ribbon::before {
+  opacity: 0;
+}
+
+.home-ribbon::after {
+  content: "";
+  position: absolute;
+  inset: auto 10% -14px 10%;
+  height: 40px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(22, 58, 45, 0.18), transparent 72%);
+  filter: blur(16px);
+  pointer-events: none;
+}
+
 .nav-cloud {
   border-radius: 22px 30px 24px 28px / 26px 18px 30px 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);

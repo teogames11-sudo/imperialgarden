@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, ShoppingBag, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useCart } from "@/components/layout/cart-provider";
 import { Filigree } from "@/components/ui/filigree";
@@ -12,13 +13,15 @@ import { cn } from "@/lib/utils";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const { isHydrated, isOpen, itemsCount, openCart } = useCart();
   const safeItemsCount = isHydrated ? itemsCount : 0;
 
   return (
     <header className="sticky top-0 z-[80] px-3 pt-3 sm:px-5 sm:pt-4">
       <div className="mx-auto max-w-[1720px]">
-        <div className="header-ribbon leaf-panel relative text-white">
+        <div className={cn("header-ribbon leaf-panel relative text-white", isHome && "home-ribbon")}>
           <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_left,rgba(255,255,255,0.12),transparent_24%),linear-gradient(90deg,rgba(255,255,255,0.04),transparent_35%,transparent_70%,rgba(255,255,255,0.04))]" />
           <div className="pointer-events-none absolute inset-x-6 bottom-0 h-px bg-[linear-gradient(90deg,transparent,rgba(210,176,106,0.65),transparent)]" />
           <div className="pointer-events-none absolute left-[18%] top-1/2 hidden -translate-y-1/2 sm:block">
@@ -26,7 +29,14 @@ export function Header() {
           </div>
 
           <div className="relative z-10 flex items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-3.5">
-            <Link href="/" className="flex min-w-0 items-center gap-4">
+            <Link
+              href="/"
+              className={cn(
+                "flex min-w-0 items-center gap-4",
+                isHome &&
+                  "rounded-full bg-[rgba(255,250,244,0.05)] px-4 py-3 shadow-[0_14px_38px_rgba(10,24,19,0.08)] backdrop-blur-xl",
+              )}
+            >
               <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-white/18 bg-[rgba(255,250,244,0.12)] shadow-[0_12px_30px_rgba(8,20,16,0.26)] backdrop-blur-xl sm:h-[3.25rem] sm:w-[3.25rem]">
                 <Image
                   src={brand.logo}
