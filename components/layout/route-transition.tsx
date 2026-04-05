@@ -17,9 +17,9 @@ export function RouteTransition({ children }: { children: ReactNode }) {
             ? false
             : {
                 opacity: 0,
-                y: 28,
-                scale: 0.985,
-                filter: "blur(12px)",
+                y: 18,
+                scale: 0.992,
+                filter: "blur(10px)",
               }
         }
         animate={
@@ -36,13 +36,13 @@ export function RouteTransition({ children }: { children: ReactNode }) {
           shouldReduceMotion
             ? undefined
             : {
-                opacity: 0.62,
-                y: -18,
-                scale: 1.012,
-                filter: "blur(10px)",
+                opacity: 0.5,
+                y: -12,
+                scale: 1.008,
+                filter: "blur(8px)",
               }
         }
-        transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }}
       >
         {!shouldReduceMotion ? (
           <>
@@ -50,10 +50,17 @@ export function RouteTransition({ children }: { children: ReactNode }) {
               aria-hidden="true"
               className="pointer-events-none fixed inset-0 z-[120] overflow-hidden"
               initial={{ opacity: 0 }}
-              animate={{ opacity: [0, 0.86, 0] }}
+              animate={{ opacity: [0, 0.92, 0] }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.12, times: [0, 0.38, 1], ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1.28, times: [0, 0.4, 1], ease: [0.22, 1, 0.36, 1] }}
             >
+              <motion.div
+                className="absolute inset-0 origin-top bg-[linear-gradient(180deg,rgba(15,39,30,0.62),rgba(15,39,30,0.2)_48%,transparent_100%)]"
+                initial={{ scaleY: 0, opacity: 0 }}
+                animate={{ scaleY: [0, 1, 0.1], opacity: [0, 0.65, 0] }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              />
               <motion.div
                 className="absolute inset-y-[-18%] right-[-34%] w-[72vw] rounded-[42%_58%_38%_62%/44%_40%_60%_56%] bg-[linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,0.42)_28%,rgba(212,177,112,0.22)_56%,rgba(32,81,62,0.2)_74%,rgba(255,255,255,0))] blur-3xl"
                 initial={{ x: "112%", rotate: 8, scale: 0.94 }}
