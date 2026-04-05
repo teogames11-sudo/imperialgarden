@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useCart } from "@/components/layout/cart-provider";
 import { Filigree } from "@/components/ui/filigree";
 import { brand, navigation } from "@/data/site";
@@ -13,48 +13,15 @@ import { cn } from "@/lib/utils";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const scrollState = useRef(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
   const { isHydrated, isOpen, itemsCount, openCart } = useCart();
   const safeItemsCount = isHydrated ? itemsCount : 0;
 
-  useEffect(() => {
-    let ticking = false;
-    const updateScroll = () => {
-      const next = window.scrollY > 16;
-      if (next !== scrollState.current) {
-        scrollState.current = next;
-        setIsScrolled(next);
-      }
-    };
-
-    const handleScroll = () => {
-      if (ticking) {
-        return;
-      }
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        updateScroll();
-        ticking = false;
-      });
-    };
-
-    updateScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <header className="sticky top-0 z-[80] px-3 pt-3 sm:px-5 sm:pt-4">
       <div className="mx-auto max-w-[1720px]">
-        <div
-          data-home={isHome ? "true" : undefined}
-          data-scrolled={isScrolled ? "true" : undefined}
-          className="header-ribbon leaf-panel relative text-white"
-        >
+        <div className="header-ribbon leaf-panel relative text-white">
           <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_left,rgba(255,255,255,0.12),transparent_24%),linear-gradient(90deg,rgba(255,255,255,0.04),transparent_35%,transparent_70%,rgba(255,255,255,0.04))]" />
           <div className="pointer-events-none absolute inset-x-6 bottom-0 h-px bg-[linear-gradient(90deg,transparent,rgba(210,176,106,0.65),transparent)]" />
           <div className="pointer-events-none absolute left-[18%] top-1/2 hidden -translate-y-1/2 sm:block">
@@ -66,7 +33,7 @@ export function Header() {
               href="/"
               className={cn(
                 "flex min-w-0 items-center gap-3 sm:gap-4",
-                isHome && !isScrolled &&
+                isHome &&
                   "rounded-full bg-[rgba(255,250,244,0.05)] px-4 py-3 shadow-[0_14px_38px_rgba(10,24,19,0.08)] backdrop-blur-xl",
               )}
             >

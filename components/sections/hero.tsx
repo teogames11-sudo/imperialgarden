@@ -21,7 +21,6 @@ export function HeroSection() {
   const artY = useTransform(scrollYProgress, [0, 1], [0, -94]);
   const artScale = useTransform(scrollYProgress, [0, 1], [1, 1.04]);
   const mistY = useTransform(scrollYProgress, [0, 1], [0, 108]);
-  const crestX = useTransform(scrollYProgress, [0, 1], [0, 90]);
   const chipY = useTransform(scrollYProgress, [0, 1], [0, -34]);
   const orbY = useTransform(scrollYProgress, [0, 1], [0, -48]);
 
@@ -51,12 +50,6 @@ export function HeroSection() {
             </motion.div>
             <div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(8,25,20,0.92)_0%,rgba(19,46,36,0.84)_34%,rgba(30,71,55,0.58)_62%,rgba(242,235,226,0.1)_100%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_18%,rgba(255,255,255,0.14),transparent_16%),radial-gradient(circle_at_82%_14%,rgba(212,177,112,0.18),transparent_18%),radial-gradient(circle_at_72%_56%,rgba(223,208,232,0.12),transparent_18%)]" />
-            <motion.div
-              style={shouldReduceMotion ? undefined : { x: crestX }}
-              className="absolute inset-x-0 top-[28%]"
-            >
-              <div className="sea-thread opacity-85" />
-            </motion.div>
             <motion.div
               style={shouldReduceMotion ? undefined : { y: orbY }}
               className="absolute left-[8%] top-[12%] h-44 w-44 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.14),transparent_70%)] blur-2xl"
