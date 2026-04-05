@@ -157,12 +157,10 @@ img {
     0 26px 70px rgba(9, 24, 19, 0.2),
     0 10px 24px rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(24px);
-  transform: rotate(-0.22deg);
   transition:
     background 220ms ease,
     border-color 220ms ease,
-    box-shadow 220ms ease,
-    transform 220ms ease;
+    box-shadow 220ms ease;
 }
 
 .header-ribbon::before {
@@ -229,10 +227,6 @@ img {
   html {
     scroll-padding-top: 6.75rem;
   }
-
-  .header-ribbon {
-    transform: none;
-  }
 }
 
 @media (max-width: 640px) {
@@ -265,9 +259,5 @@ img {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .header-ribbon {
-    transform: none;
   }
 }

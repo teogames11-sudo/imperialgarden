@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCart } from "@/components/layout/cart-provider";
 import { Filigree } from "@/components/ui/filigree";
 import { brand, navigation } from "@/data/site";
@@ -14,17 +14,34 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const scrollState = useRef(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
   const { isHydrated, isOpen, itemsCount, openCart } = useCart();
   const safeItemsCount = isHydrated ? itemsCount : 0;
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    let ticking = false;
+    const updateScroll = () => {
+      const next = window.scrollY > 16;
+      if (next !== scrollState.current) {
+        scrollState.current = next;
+        setIsScrolled(next);
+      }
     };
 
-    handleScroll();
+    const handleScroll = () => {
+      if (ticking) {
+        return;
+      }
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateScroll();
+        ticking = false;
+      });
+    };
+
+    updateScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);

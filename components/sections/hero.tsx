@@ -30,7 +30,7 @@ export function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative -mt-[5.75rem] overflow-hidden px-3 pb-5 pt-[5.75rem] sm:-mt-[6.75rem] sm:px-5 sm:pb-6 sm:pt-[6.75rem] lg:-mt-[7rem] lg:pt-[7rem]"
+      className="relative mt-4 overflow-hidden px-3 pb-5 pt-2 sm:mt-5 sm:px-5 sm:pb-6 sm:pt-3 lg:mt-6 lg:pt-4"
     >
       <div className="mx-auto max-w-[1720px] overflow-hidden rounded-[44px] border border-[rgba(255,255,255,0.16)] bg-[linear-gradient(180deg,rgba(11,31,24,0.16),rgba(255,255,255,0.04))] shadow-[0_36px_120px_rgba(11,30,23,0.18)]">
         <div className="relative grid min-h-[32rem] lg:min-h-[calc(100svh-9.1rem)] lg:grid-cols-[0.9fr,1.1fr]">
