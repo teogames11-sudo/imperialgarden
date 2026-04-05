@@ -6,11 +6,10 @@ import { ProductCard } from "@/components/catalog/product-card";
 import { Filigree } from "@/components/ui/filigree";
 import { purposeLabels } from "@/data/site";
 
-const groupLabels: Record<ProductGroup, string> = {
-  professional: "Профессионалы",
-  expert: "Expert",
-  home: "Домашний уход",
-};
+const groupOptions: Array<{ value: Exclude<ProductGroup, "expert">; label: string }> = [
+  { value: "professional", label: "Профессионалы" },
+  { value: "home", label: "Домашний уход" },
+];
 
 type CatalogExplorerProps = {
   products: Product[];
@@ -145,7 +144,7 @@ export function CatalogExplorer({
               className={fieldClassName}
             >
               <option value="all">Все группы</option>
-              {Object.entries(groupLabels).map(([value, label]) => (
+              {groupOptions.map(({ value, label }) => (
                 <option key={value} value={value}>
                   {label}
                 </option>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "@/components/layout/cart-provider";
 import { Filigree } from "@/components/ui/filigree";
 import { brand, navigation } from "@/data/site";
@@ -13,15 +13,31 @@ import { cn } from "@/lib/utils";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
   const { isHydrated, isOpen, itemsCount, openCart } = useCart();
   const safeItemsCount = isHydrated ? itemsCount : 0;
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <header className="sticky top-0 z-[80] px-3 pt-3 sm:px-5 sm:pt-4">
       <div className="mx-auto max-w-[1720px]">
-        <div className={cn("header-ribbon leaf-panel relative text-white", isHome && "home-ribbon")}>
+        <div
+          data-home={isHome ? "true" : undefined}
+          data-scrolled={isScrolled ? "true" : undefined}
+          className="header-ribbon leaf-panel relative text-white"
+        >
           <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_left,rgba(255,255,255,0.12),transparent_24%),linear-gradient(90deg,rgba(255,255,255,0.04),transparent_35%,transparent_70%,rgba(255,255,255,0.04))]" />
           <div className="pointer-events-none absolute inset-x-6 bottom-0 h-px bg-[linear-gradient(90deg,transparent,rgba(210,176,106,0.65),transparent)]" />
           <div className="pointer-events-none absolute left-[18%] top-1/2 hidden -translate-y-1/2 sm:block">
@@ -32,12 +48,12 @@ export function Header() {
             <Link
               href="/"
               className={cn(
-                "flex min-w-0 items-center gap-4",
-                isHome &&
+                "flex min-w-0 items-center gap-3 sm:gap-4",
+                isHome && !isScrolled &&
                   "rounded-full bg-[rgba(255,250,244,0.05)] px-4 py-3 shadow-[0_14px_38px_rgba(10,24,19,0.08)] backdrop-blur-xl",
               )}
             >
-              <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-white/18 bg-[rgba(255,250,244,0.12)] shadow-[0_12px_30px_rgba(8,20,16,0.26)] backdrop-blur-xl sm:h-[3.25rem] sm:w-[3.25rem]">
+              <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-white/18 bg-[rgba(255,250,244,0.12)] shadow-[0_12px_30px_rgba(8,20,16,0.26)] backdrop-blur-xl sm:h-[3.25rem] sm:w-[3.25rem]">
                 <Image
                   src={brand.logo}
                   alt={brand.name}
@@ -47,12 +63,12 @@ export function Header() {
                 />
               </div>
               <div className="min-w-0">
-                <p className="truncate font-display text-[1.95rem] leading-none tracking-[0.03em] text-white sm:text-[2.25rem]">
+                <p className="font-display text-[1.62rem] leading-none tracking-[0.02em] text-white sm:text-[2.15rem] lg:text-[2.25rem]">
                   Imperial Garden
                 </p>
                 <div className="mt-1 hidden items-center gap-3 sm:flex">
-                  <p className="truncate text-[11px] uppercase tracking-[0.3em] text-[rgba(226,204,155,0.92)]">
-                    Professional Thermal SPA
+                  <p className="text-[10px] uppercase tracking-[0.24em] text-[rgba(226,204,155,0.92)]">
+                    Thermal SPA
                   </p>
                   <Filigree className="hidden opacity-75 xl:block" />
                 </div>
@@ -65,7 +81,7 @@ export function Header() {
                   <div key={item.href} className="group relative">
                     <Link
                       href={item.href}
-                      className="inline-flex min-h-11 items-center rounded-full px-4 text-[12px] font-semibold uppercase tracking-[0.16em] text-white/[0.9] transition hover:bg-white/10 hover:text-white"
+                      className="inline-flex min-h-11 items-center rounded-full px-4 text-[12px] font-semibold uppercase tracking-[0.16em] text-white/[0.95] transition hover:bg-white/12 hover:text-white"
                     >
                       {item.label}
                     </Link>

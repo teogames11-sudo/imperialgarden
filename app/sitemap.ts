@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/about/professionals",
+    "/salons",
     "/catalog",
     "/news",
     "/training",

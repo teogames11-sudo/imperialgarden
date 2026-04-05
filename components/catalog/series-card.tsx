@@ -42,7 +42,7 @@ export function SeriesCard({
             {series.purposes.slice(0, 3).map((purpose) => (
               <span
                 key={purpose}
-                className="organic-chip border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white"
+                className="organic-chip inline-flex min-h-8 items-center border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] leading-none text-white"
               >
                 {purposeLabels[purpose]}
               </span>

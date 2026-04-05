@@ -17,17 +17,41 @@ const siteUrl = getSiteUrl();
 export const brand = {
   name: legacyData.brand.name,
   siteUrl,
-  logo: legacyData.brand.logo,
+  logo: "/assets/brand/logo-primary.svg",
   description:
     "Премиальный бренд ухода за телом с морскими минералами, ботаническими экстрактами и SPA-ритуалами для салона и дома.",
-  heroTitle: "SPA-уход, в котором красота ощущается сразу.",
+  heroTitle: "Красота тела в ритме моря.",
   heroSubtitle:
-    "Imperial Garden соединяет профессиональные линии для кабинета, домашний уход и обучение мастеров в эстетике моря, листьев и мягкого тепла.",
+    "Профессиональная коллекция Imperial Garden объединяет кабинетные линии, домашний уход и обучение мастеров в эстетике ботаники, моря и деликатного SPA-ритма.",
   heroHighlights: [
     "Профессиональные линии для SPA, массажа и салонных ритуалов",
     "Домашний уход с красивыми текстурами и выразительными ароматами",
     "Семинары и сопровождение для мастеров, студий и салонов",
   ],
+};
+
+export const heroQuickLinks = [
+  {
+    label: "Кабинетные линии",
+    href: "/#professional-lines",
+  },
+  {
+    label: "Домашний уход",
+    href: "/#home-care",
+  },
+  {
+    label: "Обучение мастеров",
+    href: "/#training-masters",
+  },
+];
+
+export const featuredSeriesLead = {
+  eyebrow: "Красота. Гармония. Совершенство",
+  title: "Избранные серии",
+  text:
+    "Imperial Garden профессиональная коллекция косметики для SPA-процедур с ботаническим и морским акцентом. Роскошные текстуры средств, легкие ароматы видимый результат после первой процедуры.",
+  detail:
+    "Морские растения, ботанические экстракты, деликатные текстуры формируют индивидуальность бренда Imperial Garden.",
 };
 
 export const purposeLabels: Record<PurposeTag, string> = {
@@ -129,9 +153,6 @@ export const trainingEventsMap = new Map(
 
 export const homeSelections = {
   professional: legacyData.home.groups.professional
-    .map((id) => productsByLegacyId.get(id))
-    .filter((value): value is Product => Boolean(value)),
-  expert: legacyData.home.groups.expert
     .map((id) => productsByLegacyId.get(id))
     .filter((value): value is Product => Boolean(value)),
   home: legacyData.home.groups.home
@@ -351,6 +372,10 @@ export const navigation: NavigationItem[] = [
     ],
   },
   {
+    href: "/salons",
+    label: "Салонам",
+  },
+  {
     href: "/catalog",
     label: "Каталог",
     children: [
@@ -402,6 +427,7 @@ export const footerGroups = [
     title: "Навигация",
     links: [
       { href: "/", label: "Главная" },
+      { href: "/salons", label: "Салонам" },
       { href: "/catalog", label: "Каталог" },
       { href: "/training", label: "Обучение" },
       { href: "/news", label: "Новости" },
@@ -411,9 +437,9 @@ export const footerGroups = [
   {
     title: "Категории",
     links: [
+      { href: "/salons", label: "Салонам" },
       { href: "/catalog?group=professional", label: "Для профессионалов" },
       { href: "/catalog?group=home", label: "Домашний уход" },
-      { href: "/catalog?group=expert", label: "Expert-средства" },
       { href: "/training/seminars", label: "Семинары" },
     ],
   },

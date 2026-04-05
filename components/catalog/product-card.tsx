@@ -60,7 +60,7 @@ export function ProductCard({ product }: { product: Product }) {
           {product.purposes.slice(0, 2).map((purpose) => (
             <span
               key={purpose}
-              className="rounded-full bg-[rgba(226,235,228,0.92)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--color-forest-strong)]"
+              className="organic-chip inline-flex min-h-8 items-center bg-[rgba(226,235,228,0.92)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] leading-none text-[var(--color-forest-strong)]"
             >
               {purposeLabels[purpose]}
             </span>

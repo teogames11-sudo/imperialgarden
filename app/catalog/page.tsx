@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { CatalogExplorer } from "@/components/catalog/catalog-explorer";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -24,8 +25,12 @@ export const metadata: Metadata = {
 
 export default async function CatalogPage({ searchParams }: Props) {
   const params = await searchParams;
+  if (params.group === "expert") {
+    redirect("/catalog?group=professional");
+  }
+
   const initialGroup =
-    params.group === "professional" || params.group === "expert" || params.group === "home"
+    params.group === "professional" || params.group === "home"
       ? params.group
       : "all";
 

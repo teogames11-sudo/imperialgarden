@@ -31,7 +31,7 @@ export default function ProfessionalsPage() {
             {professionalBenefits.map((item) => (
               <div
                 key={item}
-                className="rounded-[28px] bg-[var(--color-blush)]/72 p-5 text-sm leading-7 text-[var(--color-forest-muted)]"
+                className="organic-chip min-h-28 bg-[var(--color-blush)]/72 px-5 py-5 text-sm leading-7 text-[var(--color-forest-muted)]"
               >
                 {item}
               </div>
@@ -53,7 +53,7 @@ export default function ProfessionalsPage() {
             <Link
               key={product.slug}
               href={`/catalog/products/${product.slug}`}
-              className="organic-chip bg-white/85 px-4 py-3 text-sm font-semibold text-[var(--color-forest-strong)] shadow-[0_10px_30px_rgba(15,40,31,0.08)] transition hover:bg-[var(--color-blush)]"
+              className="organic-chip inline-flex min-h-11 items-center bg-white/85 px-4 py-3 text-sm font-semibold leading-[1.15] text-[var(--color-forest-strong)] shadow-[0_10px_30px_rgba(15,40,31,0.08)] transition hover:bg-[var(--color-blush)]"
             >
               {product.seriesName} · {product.name}
             </Link>

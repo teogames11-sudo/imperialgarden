@@ -24,7 +24,7 @@ export default function AboutPage() {
         <div className="soft-surface grid gap-8 overflow-hidden p-6 lg:grid-cols-[0.95fr,1.05fr] lg:p-8">
           <div className="relative min-h-[28rem] overflow-hidden rounded-[34px] bg-[var(--color-forest)]">
             <Image
-              src="/assets/legacy/floral.jpg"
+              src="/assets/legacy/massage-thermal-spa.jpg"
               alt="Imperial Garden brand atmosphere"
               fill
               className="object-cover"
@@ -35,10 +35,9 @@ export default function AboutPage() {
           <div className="flex flex-col justify-center">
             <SectionHeading
               eyebrow="О компании"
-              title="Imperial Garden говорит языком света, зелени и красивых ритуалов для тела."
-              body={companyStory.intro}
+              title="Imperial Garden объединяет салонный SPA-уход, домашние ритуалы и обучение мастеров."
             />
-            <div className="mt-6 space-y-4 text-base leading-8 text-[var(--color-forest-muted)]">
+            <div className="mt-5 space-y-4 text-base leading-8 text-[var(--color-forest-muted)]">
               {companyStory.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}

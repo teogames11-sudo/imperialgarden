@@ -9,7 +9,7 @@ export function TrainingCard({ event }: { event: TrainingEvent }) {
   return (
     <article className="soft-surface flex h-full flex-col p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <span className="organic-chip bg-[var(--color-blush)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--color-forest-strong)]">
+        <span className="organic-chip inline-flex min-h-8 items-center bg-[var(--color-blush)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] leading-none text-[var(--color-forest-strong)]">
           {event.format === "seminar" ? "Семинар" : "Вебинар"}
         </span>
         <span className="text-sm text-[var(--color-gold-strong)]">

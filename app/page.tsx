@@ -4,12 +4,14 @@ import { SeriesCard } from "@/components/catalog/series-card";
 import { OrderForm } from "@/components/forms/order-form";
 import { NewsCard } from "@/components/news/news-card";
 import { HeroSection } from "@/components/sections/hero";
+import { HomeImageTriptych } from "@/components/sections/home-image-triptych";
 import { Button } from "@/components/ui/button";
 import { Filigree } from "@/components/ui/filigree";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import {
   ctaLead,
+  featuredSeriesLead,
   featuredSeries,
   getSeriesPreviewProducts,
   homeCareBenefits,
@@ -34,7 +36,7 @@ export default function HomePage() {
                   alt=""
                   fill
                   className="object-cover"
-                  sizes="100vw"
+                  sizes="(max-width: 1024px) 100vw, 48vw"
                 />
               </div>
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,28,22,0.12),rgba(10,28,22,0.46))]" />
@@ -66,44 +68,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="relative min-h-[31rem] overflow-hidden">
-              <div className="absolute inset-0 opacity-36">
-                <Image
-                  src="/assets/legacy/massage-thermal-spa.jpg"
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                />
-              </div>
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,43,34,0.24),rgba(18,43,34,0.08))]" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(210,176,106,0.22),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(223,207,232,0.18),transparent_26%),linear-gradient(180deg,rgba(255,248,240,0.08),rgba(255,255,255,0.02))]" />
-
-              <div className="absolute bottom-[11%] left-1/2 w-[76%] -translate-x-1/2 rounded-[32px] border border-[rgba(210,176,106,0.18)] bg-[rgba(255,249,242,0.94)] p-6 text-[var(--color-forest-strong)] shadow-[0_20px_60px_rgba(10,26,20,0.18)]">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-gold-strong)]">
-                  Выбор по настроению
-                </p>
-                <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                  <div className="organic-chip bg-[var(--color-blush)] px-4 py-4">
-                    <p className="font-display text-3xl leading-none">01</p>
-                    <p className="mt-2 text-sm leading-6 text-[var(--color-forest-muted)]">
-                      SPA-ритуалы и салонные процедуры
-                    </p>
-                  </div>
-                  <div className="organic-chip bg-[var(--color-blush)] px-4 py-4">
-                    <p className="font-display text-3xl leading-none">02</p>
-                    <p className="mt-2 text-sm leading-6 text-[var(--color-forest-muted)]">
-                      Домашний уход с красивыми текстурами
-                    </p>
-                  </div>
-                  <div className="organic-chip bg-[var(--color-blush)] px-4 py-4">
-                    <p className="font-display text-3xl leading-none">03</p>
-                    <p className="mt-2 text-sm leading-6 text-[var(--color-forest-muted)]">
-                      Обучение и сопровождение для мастеров
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="relative min-h-[31rem] overflow-hidden bg-[linear-gradient(180deg,#fffefb,#f6f3ec)] p-4 sm:p-5">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(210,176,106,0.14),transparent_22%),radial-gradient(circle_at_bottom_left,rgba(216,206,221,0.14),transparent_24%)]" />
+              <HomeImageTriptych />
             </div>
           </div>
         </Reveal>
@@ -111,11 +78,24 @@ export default function HomePage() {
 
       <section className="page-shell py-2">
         <Reveal>
-          <SectionHeading
-            eyebrow="Избранные серии"
-            title="Линии, которые задают характер бренда."
-            body="Выразительные коллекции с ботаническими и морскими акцентами, разным ритмом текстур и своими сценариями ухода."
-          />
+          <div className="max-w-4xl">
+            <div className="mb-4 flex items-center gap-3">
+              <Filigree className="opacity-85" />
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold-strong)]">
+                {featuredSeriesLead.eyebrow}
+              </p>
+            </div>
+            <h2 className="font-display text-4xl leading-[1.02] text-[var(--color-forest-strong)] sm:text-5xl">
+              {featuredSeriesLead.title}
+            </h2>
+            <div className="mt-5 max-w-3xl space-y-3 text-base leading-8 text-[var(--color-forest-muted)] sm:text-lg">
+              <p>{featuredSeriesLead.text}</p>
+              <p>{featuredSeriesLead.detail}</p>
+            </div>
+            <div className="mt-6">
+              <Filigree className="opacity-75" />
+            </div>
+          </div>
         </Reveal>
         <div className="mt-10 grid gap-8">
           {featuredSeries.slice(0, 3).map((item, index) => (
@@ -137,7 +117,7 @@ export default function HomePage() {
       <section className="page-shell py-20">
         <div className="grid gap-6 xl:grid-cols-2">
           <Reveal>
-            <article className="soft-surface overflow-hidden p-6 sm:p-8">
+            <article id="home-care" className="soft-surface scroll-mt-32 overflow-hidden p-6 sm:p-8">
               <div className="grid gap-6 lg:grid-cols-[0.9fr,1.1fr]">
                 <div className="relative min-h-72 overflow-hidden rounded-[30px] bg-[var(--color-forest)]">
                   <Image
@@ -166,7 +146,7 @@ export default function HomePage() {
                       <Link
                         key={product.slug}
                         href={`/catalog/products/${product.slug}`}
-                        className="organic-chip bg-[var(--color-blush)] px-4 py-2 text-sm font-semibold text-[var(--color-forest-strong)] transition hover:bg-white"
+                        className="organic-chip inline-flex min-h-11 items-center bg-[var(--color-blush)] px-4 py-3 text-sm font-semibold leading-[1.15] text-[var(--color-forest-strong)] transition hover:bg-white"
                       >
                         {product.name} · {product.volume}
                       </Link>
@@ -178,7 +158,10 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <article className="soft-surface overflow-hidden p-6 sm:p-8">
+            <article
+              id="professional-lines"
+              className="soft-surface scroll-mt-32 overflow-hidden p-6 sm:p-8"
+            >
               <div className="grid gap-6 lg:grid-cols-[0.95fr,1.05fr]">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold-strong)]">
@@ -197,7 +180,7 @@ export default function HomePage() {
                       <Link
                         key={product.slug}
                         href={`/catalog/products/${product.slug}`}
-                        className="organic-chip bg-[var(--color-blush)] px-4 py-2 text-sm font-semibold text-[var(--color-forest-strong)] transition hover:bg-white"
+                        className="organic-chip inline-flex min-h-11 items-center bg-[var(--color-blush)] px-4 py-3 text-sm font-semibold leading-[1.15] text-[var(--color-forest-strong)] transition hover:bg-white"
                       >
                         {product.name} · {product.volume}
                       </Link>
@@ -220,7 +203,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="page-shell py-4">
+      <section id="training-masters" className="page-shell scroll-mt-32 py-4">
         <div className="grid gap-6 xl:grid-cols-2">
           <Reveal>
             <div className="soft-surface p-6 sm:p-8">

@@ -15,7 +15,7 @@ export function NewsCard({ article }: { article: NewsArticle }) {
   return (
     <article className="soft-surface group flex h-full flex-col p-6 transition hover:-translate-y-1 hover:shadow-[0_30px_70px_rgba(20,45,36,0.14)]">
       <div className="flex items-center justify-between gap-3">
-        <span className="organic-chip bg-[var(--color-blush)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--color-forest-strong)]">
+        <span className="organic-chip inline-flex min-h-8 items-center bg-[var(--color-blush)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] leading-none text-[var(--color-forest-strong)]">
           {labelMap[article.kind]}
         </span>
         <span className="text-sm text-[var(--color-gold-strong)]">{formatRuDate(article.date)}</span>
